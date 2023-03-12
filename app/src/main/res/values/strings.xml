@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Mini Youtube</string>
+    <string name="search"> Arama </string>
+    <string name="search_result"> Arama Sonuçları </string>
+    <string name="search_edit_hints"> Sanatçı, müzik veya video arayın</string>
+    <string name="button">Hemen Keşfet</string>
+    <string name="first_slide_title">En Yeni Müzik ve\nVideoları Keşfedin </string>
+    <string name="second_slide_title">Sevdiğiniz Sanatçı,\nMüzik ve Videoları </string>
+    <string name="third_slide_title">Bildirimler ile Anında\nHaberdar Ol!</string>
+    <string name="first_slide_desc">En yeni müzikleri dinleyin ve videoları izleyin. </string>
+    <string name="second_slide_desc">Bildirimlere izin vermeyi unutma :)</string>
+    <string name="suggested_tracks">Önerilen Parçalar</string>
+</resources>

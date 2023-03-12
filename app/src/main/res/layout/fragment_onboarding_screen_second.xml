@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/secondOnboardingImg"
+        android:layout_width="@dimen/onboarding_scr_image_width"
+        android:layout_height="@dimen/onboarding_scr_image_height"
+        android:layout_gravity="center"
+        android:background="@drawable/onboarding_img_2"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/secondSlideTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:padding="16dp"
+        android:text="@string/second_slide_title"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textAppearance="@style/onboarding_title" />
+
+    <TextView
+        android:id="@+id/secondSlideDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:layout_gravity="center"
+        android:padding="16dp"
+        android:text="@string/first_slide_desc"
+        android:textAlignment="center"
+        android:textAppearance="@style/onboarding_body" />
+
+
+</LinearLayout>

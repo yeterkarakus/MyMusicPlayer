@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="2000">
+       <KeyFrameSet>
+       </KeyFrameSet>
+        <OnSwipe motion:touchAnchorId="@+id/suggestedTrackLayout" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_marginEnd="12dp"
+            android:layout_height="70dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/musicPlayerImageView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="12dp"
+            android:id="@+id/suggestedTrackLayout" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/suggestedTrackLayout"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="12dp"
+            motion:layout_constraintStart_toEndOf="@+id/musicPlayerImageView"
+            android:layout_marginStart="12dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="200dp" />
+    </ConstraintSet>
+</MotionScene>
