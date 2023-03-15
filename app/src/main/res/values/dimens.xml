@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
     <dimen name="onboarding_first_scr_image_width">250dp</dimen>
     <dimen name="onboarding_first_scr_image_height">250dp</dimen>
 </resources>

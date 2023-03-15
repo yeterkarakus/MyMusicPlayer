@@ -29,4 +29,30 @@
         <item name="android:letterSpacing">-0.02</item>
         <item name="android:textColor">#6F6F6F</item>
     </style>
+
+    <style name="results">
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">#040815</item>
+    </style>
+
+    <style name="keyword">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">#6F6F6F</item>
+    </style>
+
+    <style name="albumText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">#040815</item>
+    </style>
+
+    <style name="trackText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">#040815</item>
+    </style>
+
+
 </resources>

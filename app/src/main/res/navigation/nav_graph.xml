@@ -14,16 +14,16 @@
             android:id="@+id/action_searchFragment_to_searchNotFoundFragment"
             app:destination="@id/searchNotFoundFragment" />
         <action
-            android:id="@+id/action_searchFragment_to_showMoreFragment"
-            app:destination="@id/showMoreFragment" />
+            android:id="@+id/action_searchFragment_to_searchActiveFragment"
+            app:destination="@id/searchActiveFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchNotFoundFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.SearchNotFoundFragment"
         android:label="SearchNotFoundFragment" />
     <fragment
-        android:id="@+id/showMoreFragment"
-        android:name="com.yeterkarakus.miniyoutube.view.searchpage.ShowMoreFragment"
-        android:label="fragment_show_more"
-        tools:layout="@layout/fragment_show_more" />
+        android:id="@+id/searchActiveFragment"
+        android:name="com.yeterkarakus.miniyoutube.view.searchpage.SearchActiveFragment"
+        android:label="fragment_search_active"
+        tools:layout="@layout/fragment_search_active" />
 </navigation>
