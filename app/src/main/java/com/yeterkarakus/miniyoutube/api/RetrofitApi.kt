@@ -1,6 +1,8 @@
 package com.yeterkarakus.miniyoutube.api
 
 
+import com.yeterkarakus.miniyoutube.model.albummodel.albums.AlbumsContainer
+import com.yeterkarakus.miniyoutube.model.albummodel.albumtracks.AlbumTracksContainer
 import com.yeterkarakus.miniyoutube.model.artistmodel.ArtistContainer
 import com.yeterkarakus.miniyoutube.model.searchmodel.SearchContainer
 import com.yeterkarakus.miniyoutube.model.searchmodel.SearchType
@@ -28,4 +30,23 @@ interface RetrofitApi {
                        @Query("type") type: SearchType,
                        @Query("offset") offset: Int = 0,
                        @Query("limit") limit : Int = 3) : Response<SearchContainer>
+
+
+
+    @Headers(
+        "X-RapidAPI-Key: acf5e91f6dmsh0b7dbb482122850p1b594ajsna5f72270471f",
+        "X-RapidAPI-Host: spotify23.p.rapidapi.com"
+    )
+    @GET("albums/")
+    suspend fun getAlbums(@Query("ids") ids : String): Response<AlbumsContainer>
+
+    @Headers(
+        "X-RapidAPI-Key: acf5e91f6dmsh0b7dbb482122850p1b594ajsna5f72270471f",
+        "X-RapidAPI-Host: spotify23.p.rapidapi.com"
+    )
+    @GET("album_tracks/")
+    suspend fun getAlbumTracks(@Query("ids") ids : String,
+                               @Query("offset") offset: Int = 0,
+                               @Query("limit") limit : Int = 10) : Response<AlbumTracksContainer>
+
 }

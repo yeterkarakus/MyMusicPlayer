@@ -1,13 +1,13 @@
 package com.yeterkarakus.miniyoutube.view
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import com.yeterkarakus.miniyoutube.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : FragmentActivity() {
     @Inject
     lateinit var fragmentFactory: MiniYoutubeFragmentFactory
     override fun onCreate(savedInstanceState: Bundle?) {

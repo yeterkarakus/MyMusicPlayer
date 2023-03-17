@@ -20,10 +20,37 @@
     <fragment
         android:id="@+id/searchNotFoundFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.SearchNotFoundFragment"
-        android:label="SearchNotFoundFragment" />
+        android:label="SearchNotFoundFragment" >
+        <action
+            android:id="@+id/action_searchNotFoundFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchActiveFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.SearchActiveFragment"
         android:label="fragment_search_active"
-        tools:layout="@layout/fragment_search_active" />
+        tools:layout="@layout/fragment_search_active" >
+
+        <argument
+            android:name="searchViewModel"
+            app:argType="com.yeterkarakus.miniyoutube.view.searchpage.model.SearchViewModel" />
+        <action
+            android:id="@+id/action_searchActiveFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_searchActiveFragment_to_albumsFragment"
+            app:destination="@id/albumsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumsFragment"
+        android:name="com.yeterkarakus.miniyoutube.view.searchpage.AlbumsFragment"
+        android:label="fragment_albums"
+        tools:layout="@layout/fragment_albums" >
+        <argument
+        android:name="albumDetailsViewModel"
+        app:argType="com.yeterkarakus.miniyoutube.view.searchpage.albumsmodel.AlbumDetailsViewModel" />
+        <action
+            android:id="@+id/action_albumsFragment_to_searchActiveFragment"
+            app:destination="@id/searchActiveFragment" />
+    </fragment>
 </navigation>

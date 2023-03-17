@@ -10,4 +10,7 @@
     <string name="first_slide_desc">En yeni müzikleri dinleyin ve videoları izleyin. </string>
     <string name="second_slide_desc">Bildirimlere izin vermeyi unutma :)</string>
     <string name="suggested_tracks">Önerilen Parçalar</string>
+    <string name="tracks">Şarkılar</string>
+    <string name="albums">Albümler</string>
+    <string name="track_list">Şarkı Listesi</string>
 </resources>

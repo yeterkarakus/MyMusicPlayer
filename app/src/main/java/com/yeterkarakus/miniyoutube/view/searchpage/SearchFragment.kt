@@ -1,8 +1,11 @@
 package com.yeterkarakus.miniyoutube.view.searchpage
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
@@ -24,9 +27,10 @@ class SearchFragment @Inject constructor(
     private val binding get() = _binding!!
     private val job = Job()
     private val scope = CoroutineScope(Dispatchers.IO + job)
+    private val trackList = mutableListOf<TrackViewModel>()
 
-    private val actionNotFound = SearchFragmentDirections.actionSearchFragmentToSearchNotFoundFragment()
-    private val actionSearchActive = SearchFragmentDirections.actionSearchFragmentToSearchActiveFragment()
+
+   // private val actionNotFound = SearchFragmentDirections.actionSearchFragmentToSearchNotFoundFragment()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +46,8 @@ class SearchFragment @Inject constructor(
 
         binding.searchEditText.setOnEditorActionListener { v, actionId, keyEvent ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                binding.imageView.visibility = GONE
+                binding.lottieLoading.visibility = VISIBLE
                 getSearchData()
             }
             false
@@ -66,7 +72,6 @@ class SearchFragment @Inject constructor(
             searchViewModel.searchText = binding.searchEditText.text.toString()
 
             //Track
-            val trackList = mutableListOf<TrackViewModel>()
             searchTracksData.body()?.let {
                 for (item in it.tracks.items) {
                     val track = TrackViewModel(
@@ -84,14 +89,14 @@ class SearchFragment @Inject constructor(
             //Track
 
             //Album
-            //TODO : Album çalışmalarını yap
 
-            val albumList = mutableListOf<AlbumViewModel>()
+            val albumList : MutableList<AlbumViewModel> = mutableListOf()
             searchAlbumData.body()?.let {
 
                 for (item in it.albums.items) {
 
                     val album = AlbumViewModel(
+                        item.data.uri,
                         item.data.name,
                         item.data.artists.items[0].profile.name,
                         item.data.coverArt.sources[0].url
@@ -108,9 +113,17 @@ class SearchFragment @Inject constructor(
             //TODO: SearchViewModel datasını fragmente taşı, RecyclerView leri oluştur vs vs.
             if (searchAlbumData.isSuccessful&&searchTracksData.isSuccessful) {
             withContext(Dispatchers.Main){
-                    findNavController().navigate(actionSearchActive)
-            }
+                    val actionSearchActive = SearchFragmentDirections.actionSearchFragmentToSearchActiveFragment(searchViewModel)
+                    findNavController().navigate(actionSearchActive) }
+
             }
         }
     }
+
+    override fun onDestroy() {
+        _binding = null
+        job.cancel()
+        super.onDestroy()
+    }
 }
+

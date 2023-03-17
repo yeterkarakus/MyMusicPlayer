@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.yeterkarakus.miniyoutube.api.RetrofitApi
 import com.yeterkarakus.miniyoutube.databinding.FragmentArtistBinding
 import com.yeterkarakus.miniyoutube.model.searchmodel.SearchType
