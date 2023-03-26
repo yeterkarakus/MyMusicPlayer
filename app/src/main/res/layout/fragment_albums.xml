@@ -5,30 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.searchpage.AlbumsFragment">
-
+    android:weightSum="1"
+    tools:context=".view.searchpage.albumsfragment.view.AlbumsFragment">
 
     <ImageView
+        android:id="@+id/albumDetailsImage"
         android:layout_width="match_parent"
-        android:padding="10dp"
-        android:layout_height="350dp"
-        android:scaleType="fitXY"
+        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.45"
+        android:scaleType="centerCrop"
         android:layout_gravity="center_horizontal"/>
     <TextView
+
         android:id="@+id/trackListTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.03"
         android:textAppearance="@style/trackList"
         android:text="@string/track_list"
-
 
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/trackListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.52"
         android:layout_margin="10dp"/>
 
 </LinearLayout>

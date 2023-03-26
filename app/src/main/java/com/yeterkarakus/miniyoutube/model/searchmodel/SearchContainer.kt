@@ -5,6 +5,7 @@ import com.yeterkarakus.miniyoutube.model.searchmodel.searchartistmodel.SearchAr
 import com.yeterkarakus.miniyoutube.model.searchmodel.searchtracksmodel.SearchTracks
 
 data class SearchContainer(
+    val message: String,
     val tracks: SearchTracks,
     val albums: SearchAlbums,
     val artists :SearchArtists )

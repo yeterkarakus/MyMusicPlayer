@@ -16,7 +16,6 @@ class OnboardingActivity : AppCompatActivity() {
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        println("Onboarding")
         binding.apply {
             viewPager.adapter = viewPagerAdapter
             dotsIndicator.attachTo(viewPager)
@@ -24,7 +23,6 @@ class OnboardingActivity : AppCompatActivity() {
                 val intent = Intent(this@OnboardingActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-                println("Onboarding teue")
                 onboardingFinished()
             }
         }

@@ -3,22 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:weightSum="1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/thirdOnboardingImg"
-        android:layout_width="@dimen/onboarding_scr_image_width"
-        android:layout_height="@dimen/onboarding_scr_image_height"
-        android:background="@drawable/onboarding_img_3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_weight="0.7"
+        android:scaleType="center"
+        android:src="@drawable/onboarding_img_3"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/thirdSlideTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:minHeight="48dp"
+        android:layout_weight="0.2"
         android:padding="16dp"
         android:text="@string/third_slide_title"
         android:textAlignment="center"
@@ -28,8 +32,9 @@
     <TextView
         android:id="@+id/thirdSlideDesc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:minHeight="48dp"
+        android:layout_weight="0.1"
         android:padding="16dp"
         android:text="@string/second_slide_desc"
         android:textAlignment="center"

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:layout_height="match_parent">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.80"
+    android:orientation="vertical"
+    tools:context=".view.searchpage.albumsfragment.view.AlbumsFragment">
+
+    <ImageView
+        android:id="@+id/trackDetailsImg"
+        android:layout_width="match_parent"
+        android:maxWidth="450dp"
+        android:layout_height="350dp"
+        android:scaleType="centerCrop"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal"/>
+
+
+    <TextView
+        android:id="@+id/trackArtist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="10dp"
+
+        android:text="Şarkıcı"
+        android:textAppearance="@style/trackList" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/artistName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+           android:layout_weight="0.9"
+            android:letterSpacing="0.03"
+            android:padding="10dp"
+            android:textColor="@color/secondary_700"
+            android:textSize="16sp" />
+
+
+
+        <ImageButton
+            android:id="@+id/detailsButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0.1"
+            android:clickable="true"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/vector" />
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:orientation="vertical"
+    android:layout_weight="0.20">
+    <TextView
+        android:id="@+id/albumWithSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.03"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:text="@string/tracks_album"
+        android:padding="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/albumImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <TextView
+            android:id="@+id/albumName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="16sp"
+            android:letterSpacing="0.03"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

@@ -3,14 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:weightSum="1"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.15">
+        <TextView
+            android:id="@+id/trackNumber"
+            android:textAppearance="@style/albumText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center" />
+    </LinearLayout>
 
-        android:layout_height="56dp">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        android:layout_weight="0.85"
+        android:layout_height="match_parent">
         <TextView
             android:id="@+id/trackName"
             android:layout_width="match_parent"
@@ -18,13 +32,14 @@
             android:textAppearance="@style/recyclerTitleName"
             android:layout_margin="5dp"
             android:text="Tracks"/>
+
         <TextView
             android:id="@+id/artisName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/recyclerBodyName"
-           android:layout_margin="5dp"
-            android:text="Artist"/>
+            android:layout_margin="5dp"
+            android:text="Artist"
+            android:textAppearance="@style/recyclerBodyName" />
     </LinearLayout>
 
 

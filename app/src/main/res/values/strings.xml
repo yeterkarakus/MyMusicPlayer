@@ -13,4 +13,5 @@
     <string name="tracks">Şarkılar</string>
     <string name="albums">Albümler</string>
     <string name="track_list">Şarkı Listesi</string>
+    <string name="tracks_album">Şarkının Bulunduğu Albüm</string>
 </resources>
