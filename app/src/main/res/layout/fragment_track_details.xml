@@ -32,7 +32,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/trackName"
@@ -54,7 +55,8 @@
             android:background="@drawable/play_button"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="@+id/trackDetailsImg"
-            app:layout_constraintEnd_toEndOf="@+id/trackDetailsImg" />
+            app:layout_constraintEnd_toEndOf="@+id/trackDetailsImg"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -118,7 +120,6 @@
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:orientation="horizontal"
-
         android:layout_height="wrap_content">
 
         <ImageView

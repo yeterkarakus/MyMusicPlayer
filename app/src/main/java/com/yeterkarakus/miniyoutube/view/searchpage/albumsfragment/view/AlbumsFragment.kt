@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,7 +45,7 @@ class AlbumsFragment @Inject constructor(
 
         args.baseAlbumViewModel.let {
             Glide.with(requireActivity())
-                .load(it.albumDetailsList!!.get(0).imageUrl)
+                .load(it.albumDetailsList!![0].imageUrl)
                 .transform(RoundedCorners(15))
                 .into(binding.albumDetailsImage)
             binding.albumName.text = it.albumDetailsList!![0].name
@@ -104,8 +103,13 @@ class AlbumsFragment @Inject constructor(
         _binding = null
     }
 
+
+
     override fun onAlbumTrackItemsSelect(albumTracksViewModel: AlbumTracksViewModel) {
 
         getTracksData(albumTracksViewModel.uri)
     }
+
+
+
 }

@@ -33,7 +33,7 @@ class SearchActiveFragment @Inject constructor (
     private val binding get() = _binding!!
     private val job = Job()
     private val scope = CoroutineScope(Dispatchers.IO +job)
-    private val args: SearchActiveFragmentArgs by navArgs()
+  private val args: SearchActiveFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -80,9 +80,8 @@ class SearchActiveFragment @Inject constructor (
 
 
        }
-
-
     }
+
     private fun trackDetailsData(id: String){
         scope.launch {
 
@@ -113,14 +112,10 @@ class SearchActiveFragment @Inject constructor (
                 val action = SearchActiveFragmentDirections.actionSearchActiveFragmentToTrackDetailsFragment(trackDetailsViewModel)
                 findNavController().navigate(action)
             }
-
         }
-
     }
 
     private fun albumsData(id: String){
-
-
         scope.launch {
             val baseAlbumViewModel = BaseAlbumViewModel()
 
@@ -163,11 +158,8 @@ class SearchActiveFragment @Inject constructor (
                 findNavController().navigate(action)
 
             }
-
         }
-
     }
-
 
     override fun onDestroy() {
         job.cancel()
@@ -177,16 +169,11 @@ class SearchActiveFragment @Inject constructor (
 
     override fun onItemSelect(albumViewModel: AlbumViewModel) {
         albumsData(albumViewModel.uri)
-
     }
 
     override fun onItemSelected(trackViewModel: TrackViewModel) {
-
         trackDetailsData(trackViewModel.id)
-
     }
-
-
 }
 
 

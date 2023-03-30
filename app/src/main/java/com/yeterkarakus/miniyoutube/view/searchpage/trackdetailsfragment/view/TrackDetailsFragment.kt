@@ -41,7 +41,7 @@ class TrackDetailsFragment @Inject constructor(
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
@@ -59,9 +59,7 @@ class TrackDetailsFragment @Inject constructor(
             detailsButton.setOnClickListener{
                 data()
             }
-
         }
-
     }
 
     override fun onDestroyView() {
@@ -87,9 +85,6 @@ class TrackDetailsFragment @Inject constructor(
                         )
                         artistList.add(artistViewModel)
                     }
-
-
-
                 }
                 val getArtistOverview = retrofit.getArtistOverview(artistList[0].id)
                 val artistOverviewList: MutableList<ArtistOverViewModel> = mutableListOf()
@@ -127,10 +122,6 @@ class TrackDetailsFragment @Inject constructor(
                 }
             }
         }
-
-
-
-
     }
  }
 

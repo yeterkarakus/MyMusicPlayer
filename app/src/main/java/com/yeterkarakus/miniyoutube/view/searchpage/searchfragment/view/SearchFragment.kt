@@ -145,6 +145,8 @@ class SearchFragment @Inject constructor(
         }
     }
 
+
+
     override fun onDestroy() {
         _binding = null
         job.cancel()

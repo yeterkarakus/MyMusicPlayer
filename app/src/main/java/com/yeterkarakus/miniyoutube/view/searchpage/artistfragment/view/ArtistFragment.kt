@@ -14,7 +14,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.yeterkarakus.miniyoutube.adapter.ArtistAlbumAdapter
 import com.yeterkarakus.miniyoutube.api.RetrofitApi
 import com.yeterkarakus.miniyoutube.databinding.FragmentArtistBinding
-import com.yeterkarakus.miniyoutube.view.searchpage.SearchActiveFragmentDirections
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.AlbumDetailsViewModel
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.AlbumTracksViewModel
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.BaseAlbumViewModel
@@ -30,7 +29,7 @@ class ArtistFragment @Inject constructor(
     private val binding get() = _binding!!
     private val job = Job()
     private val scope = CoroutineScope(Dispatchers.IO + job)
-    private val args : ArtistFragmentArgs by navArgs()
+   private val args : ArtistFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,8 +44,8 @@ class ArtistFragment @Inject constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.apply {
 
+        binding.apply {
             Glide.with(requireActivity())
                 .load(args.baseViewModel.artistList[0].imageUrl)
                 .transform(RoundedCorners(15))
@@ -57,17 +56,14 @@ class ArtistFragment @Inject constructor(
             val adapter = ArtistAlbumAdapter(args.baseViewModel.albumsList,this@ArtistFragment)
             singleRecyclerView.adapter = adapter
             singleRecyclerView.layoutManager = LinearLayoutManager(context)
-
-
         }
-
     }
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
     }
-    private fun albumsData(id: String){
 
+    private fun albumsData(id: String){
 
         scope.launch {
             val baseAlbumViewModel = BaseAlbumViewModel()
@@ -111,9 +107,7 @@ class ArtistFragment @Inject constructor(
                 findNavController().navigate(action)
 
             }
-
         }
-
     }
 
     override fun onAlbumsItemSelected(albumsViewModel: AlbumsViewModel) {
