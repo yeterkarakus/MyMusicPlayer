@@ -48,6 +48,7 @@ class TrackDetailsFragment @Inject constructor(
             Glide.with(view).load(args.trackDetailsViewModel.tracksImgUrl)
                 .transform(RoundedCorners(15))
                 .into(trackDetailsImg)
+            trackName.text = args.trackDetailsViewModel.name
             artistName.text = args.trackDetailsViewModel.artistName
             albumName.text = args.trackDetailsViewModel.albumName
             Glide.with(view)

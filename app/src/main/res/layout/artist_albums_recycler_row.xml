@@ -14,7 +14,6 @@
         android:layout_weight="0.22">
         <ImageView
             android:id="@+id/albumImg"
-            android:textAppearance="@style/albumText"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="10dp"
@@ -32,14 +31,14 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/recyclerTitleName"
             android:layout_marginTop="10dp"
-            android:text="Album"/>
+            android:text=""/>
 
         <TextView
             android:id="@+id/albumYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Year"
+            android:text=""
             android:textAppearance="@style/recyclerBodyName" />
     </LinearLayout>
 

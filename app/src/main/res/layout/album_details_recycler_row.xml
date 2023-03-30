@@ -14,7 +14,7 @@
         android:layout_weight="0.15">
         <TextView
             android:id="@+id/trackNumber"
-            android:textAppearance="@style/albumText"
+            android:textAppearance="@style/title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textAlignment="center" />

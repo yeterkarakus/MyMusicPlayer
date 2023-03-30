@@ -8,7 +8,7 @@
     tools:context=".view.searchpage.artistfragment.view.ArtistFragment">
 
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/imgLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,31 +17,33 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <TextView
-            android:id="@+id/artistName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/artistImg"
-            android:layout_alignBottom="@+id/artistImg"
-            android:letterSpacing="0.03"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:text="Artist"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
         <ImageView
             android:id="@+id/artistImg"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:scaleType="centerCrop" />
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/artistName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textAppearance="@style/image_text"
+            android:maxLines="1"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/artistImg"
+            app:layout_constraintEnd_toEndOf="@+id/artistImg"
+            app:layout_constraintStart_toStartOf="@+id/artistImg" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,9 +61,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fadeScrollbars="true"
+            android:textAppearance="@style/title"
             android:maxHeight="68dp"
             android:padding="10dp"
-            android:text="Hakkında"
+            android:text="@string/hakkinda"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -75,13 +78,13 @@
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bioTitle"
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/bioBody"
+                android:textAppearance="@style/body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </ScrollView>
@@ -110,7 +113,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Şarkılar" />
+            android:textAppearance="@style/title"
+            android:text="@string/albumler" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/singleRecyclerView"

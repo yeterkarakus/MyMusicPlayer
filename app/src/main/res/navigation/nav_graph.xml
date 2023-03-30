@@ -4,85 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/searchFragment">
-
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.view.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_searchNotFoundFragment"
-            app:destination="@id/searchNotFoundFragment" />
+            app:destination="@id/searchNotFoundFragment"/>
         <action
             android:id="@+id/action_searchFragment_to_searchActiveFragment"
-            app:destination="@id/searchActiveFragment" />
+            app:destination="@id/searchActiveFragment"/>
     </fragment>
     <fragment
         android:id="@+id/searchNotFoundFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.view.SearchNotFoundFragment"
-        android:label="SearchNotFoundFragment" >
+        android:label="SearchNotFoundFragment"
+        tools:layout="@layout/fragment_search_not_found">
         <action
             android:id="@+id/action_searchNotFoundFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"/>
     </fragment>
     <fragment
         android:id="@+id/searchActiveFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.SearchActiveFragment"
         android:label="fragment_search_active"
-        tools:layout="@layout/fragment_search_active" >
-
+        tools:layout="@layout/fragment_search_active">
         <argument
             android:name="searchViewModel"
             app:argType="com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.model.SearchViewModel" />
         <action
-            android:id="@+id/action_searchActiveFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
             android:id="@+id/action_searchActiveFragment_to_albumsFragment"
-            app:destination="@id/albumsFragment" />
+            app:destination="@id/albumsFragment"/>
         <action
             android:id="@+id/action_searchActiveFragment_to_trackDetailsFragment"
-            app:destination="@id/trackDetailsFragment" />
+            app:destination="@id/trackDetailsFragment"/>
+        <action
+            android:id="@+id/action_searchActiveFragment_to_searchNotFoundFragment"
+            app:destination="@id/searchNotFoundFragment"/>
+        <action
+            android:id="@+id/action_searchActiveFragment_to_searchFragment"
+            app:destination="@id/searchFragment"/>
     </fragment>
     <fragment
         android:id="@+id/albumsFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.view.AlbumsFragment"
         android:label="fragment_albums"
-        tools:layout="@layout/fragment_albums" >
+        tools:layout="@layout/fragment_albums">
         <argument
-        android:name="baseAlbumViewModel"
-        app:argType="com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.BaseAlbumViewModel" />
-        <action
-            android:id="@+id/action_albumsFragment_to_searchActiveFragment"
-            app:destination="@id/searchActiveFragment" />
+            android:name="baseAlbumViewModel"
+            app:argType="com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.BaseAlbumViewModel" />
         <action
             android:id="@+id/action_albumsFragment_to_trackDetailsFragment"
-            app:destination="@id/trackDetailsFragment" />
+            app:destination="@id/trackDetailsFragment"/>
+        <action
+            android:id="@+id/action_albumsFragment_to_searchNotFoundFragment"
+            app:destination="@id/searchNotFoundFragment"/>
     </fragment>
     <fragment
         android:id="@+id/trackDetailsFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.trackdetailsfragment.view.TrackDetailsFragment"
-        android:label="TrackDetailsFragment" >
-        <action
-            android:id="@+id/action_trackDetailsFragment_to_searchActiveFragment"
-            app:destination="@id/searchActiveFragment" />
+        android:label="TrackDetailsFragment"
+        tools:layout="@layout/fragment_track_details">
         <argument
             android:name="trackDetailsViewModel"
             app:argType="com.yeterkarakus.miniyoutube.view.searchpage.trackdetailsfragment.model.TrackDetailsViewModel" />
         <action
             android:id="@+id/action_trackDetailsFragment_to_artistFragment"
-            app:destination="@id/artistFragment" />
+            app:destination="@id/artistFragment"/>
+        <action
+            android:id="@+id/action_trackDetailsFragment_to_searchNotFoundFragment"
+            app:destination="@id/searchNotFoundFragment"/>
     </fragment>
     <fragment
         android:id="@+id/artistFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.view.ArtistFragment"
         android:label="fragment_artist"
-        tools:layout="@layout/fragment_artist" >
+        tools:layout="@layout/fragment_artist">
         <argument
             android:name="baseViewModel"
             app:argType="com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.model.BaseViewModel" />
         <action
             android:id="@+id/action_artistFragment_to_albumsFragment"
-            app:destination="@id/albumsFragment" />
+            app:destination="@id/albumsFragment"/>
+        <action
+            android:id="@+id/action_artistFragment_to_searchNotFoundFragment"
+            app:destination="@id/searchNotFoundFragment"/>
     </fragment>
 </navigation>

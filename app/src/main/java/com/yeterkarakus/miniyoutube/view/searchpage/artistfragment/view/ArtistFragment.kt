@@ -107,7 +107,8 @@ class ArtistFragment @Inject constructor(
             baseAlbumViewModel.albumTracksList = albumsTrackList
 
             withContext(Dispatchers.Main){
-                val action = ArtistFragmentDirections.
+                val action = ArtistFragmentDirections.actionArtistFragmentToAlbumsFragment(baseAlbumViewModel)
+                findNavController().navigate(action)
 
             }
 

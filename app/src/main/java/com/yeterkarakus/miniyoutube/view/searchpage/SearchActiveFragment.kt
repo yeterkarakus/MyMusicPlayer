@@ -15,6 +15,7 @@ import com.yeterkarakus.miniyoutube.adapter.AlbumsRecyclerAdapter
 import com.yeterkarakus.miniyoutube.adapter.TrackRecyclerAdapter
 import com.yeterkarakus.miniyoutube.api.RetrofitApi
 import com.yeterkarakus.miniyoutube.databinding.FragmentSearchActiveBinding
+import com.yeterkarakus.miniyoutube.view.searchpage.SearchActiveFragmentDirections.Companion.actionSearchActiveFragmentToSearchFragment
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.AlbumDetailsViewModel
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.AlbumTracksViewModel
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.BaseAlbumViewModel
@@ -34,6 +35,7 @@ class SearchActiveFragment @Inject constructor (
     private val scope = CoroutineScope(Dispatchers.IO +job)
     private val args: SearchActiveFragmentArgs by navArgs()
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,9 +48,15 @@ class SearchActiveFragment @Inject constructor (
 
     }
 
+
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+    binding.searchButton.setOnClickListener {
+        findNavController().navigate(actionSearchActiveFragmentToSearchFragment())
+    }
+
 
       args.searchViewModel.let {
             val trackRecordCount = args.searchViewModel.trackRecordCount

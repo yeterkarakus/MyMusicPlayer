@@ -16,29 +16,62 @@
     android:orientation="vertical"
     tools:context=".view.searchpage.albumsfragment.view.AlbumsFragment">
 
-    <ImageView
-        android:id="@+id/trackDetailsImg"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:maxWidth="450dp"
-        android:layout_height="350dp"
-        android:scaleType="centerCrop"
-        android:layout_margin="10dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/trackDetailsImg"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:maxWidth="450dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/trackName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/image_text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@+id/trackDetailsImg"
+            app:layout_constraintEnd_toStartOf="@+id/playButton"
+            app:layout_constraintStart_toStartOf="@+id/trackDetailsImg" />
+
+        <ImageButton
+            android:id="@+id/playButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/play_button"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/trackDetailsImg"
+            app:layout_constraintEnd_toEndOf="@+id/trackDetailsImg" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
     <TextView
         android:id="@+id/trackArtist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:padding="10dp"
-
-        android:text="Şarkıcı"
-        android:textAppearance="@style/trackList" />
+        android:text="@string/artist"
+        android:textAppearance="@style/title" />
 
     <LinearLayout
         android:layout_width="match_parent"
-
+        android:padding="10dp"
         android:orientation="horizontal"
         android:weightSum="1"
         android:layout_height="wrap_content">
@@ -47,24 +80,18 @@
             android:id="@+id/artistName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-           android:layout_weight="0.9"
-            android:letterSpacing="0.03"
+            android:layout_weight="0.9"
+            android:textAppearance="@style/body"
             android:padding="10dp"
-            android:textColor="@color/secondary_700"
-            android:textSize="16sp" />
-
-
+            android:textColor="@color/secondary_700" />
 
         <ImageButton
             android:id="@+id/detailsButton"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_height="40dp"
             android:layout_weight="0.1"
-            android:clickable="true"
             android:background="?android:selectableItemBackground"
-            android:src="@drawable/vector" />
+            android:src="@drawable/vector"/>
 
     </LinearLayout>
 
@@ -82,8 +109,7 @@
         android:id="@+id/albumWithSong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:letterSpacing="0.03"
-        android:textSize="18sp"
+        android:textAppearance="@style/title"
         android:textColor="@color/black"
         android:text="@string/tracks_album"
         android:padding="10dp"/>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mini Youtube</string>
+    <string name="app_name">Music Player</string>
     <string name="search"> Arama </string>
     <string name="search_result"> Arama Sonuçları </string>
     <string name="search_edit_hints"> Sanatçı, müzik veya video arayın</string>
@@ -14,4 +14,7 @@
     <string name="albums">Albümler</string>
     <string name="track_list">Şarkı Listesi</string>
     <string name="tracks_album">Şarkının Bulunduğu Albüm</string>
+    <string name="hakkinda">Hakkında</string>
+    <string name="albumler">Albümler</string>
+    <string name="artist">Şarkıcı</string>
 </resources>

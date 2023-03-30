@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "763884785862",
+    "project_id": "music-player-c17f9",
+    "storage_bucket": "music-player-c17f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763884785862:android:289daef6c0ee3b9b2e87c7",
+        "android_client_info": {
+          "package_name": "com.yeterkarakus.miniyoutube"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763884785862-oq33rvm9q99h5dqd3p03iokod8v0gooe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbYishyF-jO-FhpcWpb5LRNAryO2_MHb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763884785862-oq33rvm9q99h5dqd3p03iokod8v0gooe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

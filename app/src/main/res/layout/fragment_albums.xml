@@ -7,24 +7,46 @@
     android:orientation="vertical"
     android:weightSum="1"
     tools:context=".view.searchpage.albumsfragment.view.AlbumsFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.45">
+
 
     <ImageView
         android:id="@+id/albumDetailsImage"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:layout_height="0dp"
-        android:layout_weight="0.45"
         android:scaleType="centerCrop"
-        android:layout_gravity="center_horizontal"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/albumName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:textAppearance="@style/image_text"
+        app:layout_constraintBottom_toBottomOf="@+id/albumDetailsImage"
+        app:layout_constraintEnd_toEndOf="@+id/albumDetailsImage"
+        app:layout_constraintStart_toStartOf="@+id/albumDetailsImage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
 
         android:id="@+id/trackListTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.03"
-        android:textAppearance="@style/trackList"
+        android:textAppearance="@style/title"
         android:text="@string/track_list"
-
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"/>

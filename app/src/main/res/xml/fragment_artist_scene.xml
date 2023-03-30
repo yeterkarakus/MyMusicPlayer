@@ -17,11 +17,12 @@
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
-            android:id="@+id/singlesLayout" />
+            android:id="@+id/singlesLayout"
+            motion:layout_constraintTop_toBottomOf="@+id/imgLayout" />
     </ConstraintSet>
 </MotionScene>

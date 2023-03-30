@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/albumImg"
         android:layout_width="100dp"
-        android:layout_height="94dp"
+        android:layout_height="100dp"
         android:scaleType="fitXY"
         tools:ignore="ContentDescription" />
     <LinearLayout
@@ -23,7 +23,7 @@
             android:maxLines="1"
             android:textAppearance="@style/recyclerTitleName"
             android:layout_margin="5dp"
-            android:text="Album"/>
+            android:text=""/>
         <TextView
             android:id="@+id/artisName"
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/recyclerBodyName"
            android:layout_margin="5dp"
-            android:text="Artist"/>
+            android:text=""/>
     </LinearLayout>
 
 </LinearLayout>

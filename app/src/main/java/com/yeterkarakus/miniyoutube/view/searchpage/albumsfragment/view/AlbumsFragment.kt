@@ -49,6 +49,7 @@ class AlbumsFragment @Inject constructor(
                 .load(it.albumDetailsList!!.get(0).imageUrl)
                 .transform(RoundedCorners(15))
                 .into(binding.albumDetailsImage)
+            binding.albumName.text = it.albumDetailsList!![0].name
 
             val albumTrackRecyclerAdapter = AlbumTracksRecyclerAdapter(it.albumTracksList!!,this)
             binding.trackListRecyclerView.adapter = albumTrackRecyclerAdapter
