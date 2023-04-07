@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.faltenreich.skeletonlayout.SkeletonLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trackSkeletonLayout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+
+<LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
@@ -93,7 +99,8 @@
             android:layout_height="40dp"
             android:layout_weight="0.1"
             android:background="?android:selectableItemBackground"
-            android:src="@drawable/vector"/>
+            android:src="@drawable/vector"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -140,3 +147,5 @@
     </LinearLayout>
 </LinearLayout>
 </LinearLayout>
+
+</com.faltenreich.skeletonlayout.SkeletonLayout>

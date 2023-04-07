@@ -9,12 +9,10 @@ class NotificationHandler(
     private val notifier : Notifier,
     private val notificationManager: NotificationManager
 ) {
-    /*
+
     fun handle(remoteMessage : Map<String,String>){
         val notificationItem = remoteMessageResolver.resolve(remoteMessage)
         val notificationData = notificationBuilder.build(notificationItem,notificationManager)
         notifier.notify(notificationData)
     }
-
-     */
 }

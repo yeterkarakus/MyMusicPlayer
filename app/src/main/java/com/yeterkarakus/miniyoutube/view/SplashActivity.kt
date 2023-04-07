@@ -7,9 +7,11 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.yeterkarakus.miniyoutube.R
 import com.yeterkarakus.miniyoutube.databinding.ActivitySplashBinding
+import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.view.AlbumsFragmentArgs
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -21,12 +23,24 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("Device Density", "onCreate: " + getResources().getDisplayMetrics().density)
+        Log.d("Device Density", "onCreate: " + resources.displayMetrics.density)
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (onboardingFinished()){
-            val intent = Intent(this@SplashActivity, MainActivity::class.java)
-            startActivity(intent)
+            val intentMain = Intent(this@SplashActivity, MainActivity::class.java)
+
+                intentMain.putExtra("isFromPush", false)
+
+                if (intent.getStringExtra("uuid") != null) {
+                    intentMain.putExtra("isFromPush", true)
+                    intentMain.putExtra("uuid", intent.getStringExtra("uuid"))
+                }
+
+                if (intent.getStringExtra("eventType") != null) {
+                    intentMain.putExtra("eventType", intent.getStringExtra("eventType"))
+                }
+
+            startActivity(intentMain)
             finish()
             } else {
                 val intent = Intent(this@SplashActivity, OnboardingActivity::class.java)

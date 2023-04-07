@@ -6,12 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yeterkarakus.miniyoutube.databinding.AlbumDetailsRecyclerRowBinding
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.AlbumTracksViewModel
-import com.yeterkarakus.miniyoutube.view.searchpage.trackdetailsfragment.model.TrackDetailsViewModel
 
 lateinit var onItemClick :  AlbumTracksRecyclerAdapter.OnItemClickListener
 lateinit var albumTrackList : List<AlbumTracksViewModel>
 
-class AlbumTracksRecyclerAdapter ( val albumTracks: List<AlbumTracksViewModel> , onItemClickListener : OnItemClickListener):RecyclerView.Adapter<AlbumTracksRecyclerAdapter.AlbumTracksViewHolder>(){
+class AlbumTracksRecyclerAdapter (albumTracks: List<AlbumTracksViewModel>, onItemClickListener : OnItemClickListener):RecyclerView.Adapter<AlbumTracksRecyclerAdapter.AlbumTracksViewHolder>(){
     init {
         onItemClick = onItemClickListener
         albumTrackList = albumTracks

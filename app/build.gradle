@@ -94,6 +94,9 @@ dependencies {
 
 
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation 'com.faltenreich:skeletonlayout:4.0.0'
+
 }
 
 kapt {

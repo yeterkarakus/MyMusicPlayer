@@ -1,6 +1,7 @@
 package com.yeterkarakus.miniyoutube.view.searchpage.trackdetailsfragment.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +11,10 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.yeterkarakus.miniyoutube.api.RetrofitApi
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.faltenreich.skeletonlayout.Skeleton
+import com.yeterkarakus.miniyoutube.TrackUtils
 import com.yeterkarakus.miniyoutube.databinding.FragmentTrackDetailsBinding
-import com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.model.ArtistOverViewModel
-import com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.model.ArtistViewModel
-import com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.model.BaseViewModel
-import com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.model.AlbumsViewModel
+import com.yeterkarakus.miniyoutube.view.searchpage.trackdetailsfragment.model.TrackDetailsViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
@@ -27,7 +27,8 @@ class TrackDetailsFragment @Inject constructor(
     private val job = Job()
     private val scope = CoroutineScope(Dispatchers.IO+job)
     private val args : TrackDetailsFragmentArgs by navArgs()
-
+    private lateinit var skeleton: Skeleton
+    private var trackDetailsViewModel = TrackDetailsViewModel()
 
 
 
@@ -37,29 +38,15 @@ class TrackDetailsFragment @Inject constructor(
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTrackDetailsBinding.inflate(inflater, container, false)
-
+        skeleton = binding.trackSkeletonLayout
+        skeleton.showSkeleton()
         return binding.root
     }
 
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        tracksData()
 
-        binding.apply {
-            Glide.with(view).load(args.trackDetailsViewModel.tracksImgUrl)
-                .transform(RoundedCorners(15))
-                .into(trackDetailsImg)
-            trackName.text = args.trackDetailsViewModel.name
-            artistName.text = args.trackDetailsViewModel.artistName
-            albumName.text = args.trackDetailsViewModel.albumName
-            Glide.with(view)
-                .load(args.trackDetailsViewModel.albumImgUrl)
-                .transform(RoundedCorners(15))
-                .into(albumImg)
-
-            detailsButton.setOnClickListener{
-                data()
-            }
-        }
     }
 
     override fun onDestroyView() {
@@ -68,58 +55,55 @@ class TrackDetailsFragment @Inject constructor(
         _binding = null
     }
 
+    private fun tracksData(){
+        Log.e("TAG", args.uuid)
 
-    private fun data(){
         scope.launch {
+            val getTracksData = retrofit.getTrack(args.uuid)
+            val trackList: MutableList<TrackDetailsViewModel> = mutableListOf()
+            getTracksData.body()?.let {
 
-            val getArtist = retrofit.getArtist(args.trackDetailsViewModel.artistId.toString())
-            val artistList: MutableList<ArtistViewModel> = mutableListOf()
-            if (getArtist.isSuccessful) {
-                getArtist.body()?.let {
-                    for (item in it.artists) {
-                        val artistViewModel = ArtistViewModel(
-                            item.id,
-                            item.name,
-                            item.uri,
-                            item.images[0].url
-                        )
-                        artistList.add(artistViewModel)
+                for (item in it.tracks) {
+                    val track = TrackDetailsViewModel(
+                        item.album.images[0].url,
+                        item.id,
+                        item.name,
+                        item.artists[0].id,
+                        item.artists[0].name,
+                        item.album.images[0].url,
+                        item.album.name,
+                        item.album.id
+                    )
+                    trackList.add(track)
+                }
+
+                val trackUtils = TrackUtils()
+                trackDetailsViewModel = trackUtils.getTracksDetailsViewModel(trackList)
+
+            }
+            withContext(Dispatchers.Main){
+                binding.apply {
+                    Glide.with(requireActivity())
+                        .load(trackDetailsViewModel.tracksImgUrl)
+                        .transform(RoundedCorners(15))
+                        .into(trackDetailsImg)
+                    trackName.text = trackDetailsViewModel.name
+                    artistName.text =trackDetailsViewModel.artistName
+                    albumName.text = trackDetailsViewModel.albumName
+
+
+                    Glide.with(requireActivity())
+                        .load(trackDetailsViewModel.albumImgUrl)
+                        .transform(RoundedCorners(15))
+                        .into(albumImg)
+                    detailsButton.setOnClickListener{
+                        val action = TrackDetailsFragmentDirections
+                            .actionTrackDetailsFragmentToArtistFragment(trackDetailsViewModel.artistId.toString())
+                        findNavController().navigate(action)
+
                     }
                 }
-                val getArtistOverview = retrofit.getArtistOverview(artistList[0].id)
-                val artistOverviewList: MutableList<ArtistOverViewModel> = mutableListOf()
-                val albumList : MutableList<AlbumsViewModel> = mutableListOf()
-                getArtistOverview.body()?.let {
-
-                    for (item in listOf(it.data.artist)) {
-                        val artistOverViewModel = ArtistOverViewModel(
-                            item.id,
-                            item.uri,
-                            item.profile.biography.text
-                        )
-
-                        artistOverviewList.add(artistOverViewModel)
-                    }
-                    for (item in it.data.artist.discography.albums.items){
-                        val albumsViewModel = AlbumsViewModel(
-                            item.releases.items[0].id,
-                            item.releases.items[0].name,
-                            item.releases.items[0].date.year,
-                            item.releases.items[0].coverArt.sources[0].url
-                        )
-                        albumList.add(albumsViewModel)
-                    }
-                }
-                val baseViewModel = BaseViewModel(artistList, artistOverviewList, albumList)
-                withContext(Dispatchers.Main)
-                {
-                    val action =
-                        TrackDetailsFragmentDirections.actionTrackDetailsFragmentToArtistFragment(
-                            baseViewModel
-                        )
-                    findNavController().navigate(action)
-
-                }
+                skeleton.showOriginal()
             }
         }
     }

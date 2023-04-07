@@ -9,11 +9,10 @@ import com.yeterkarakus.miniyoutube.databinding.ArtistAlbumsRecyclerRowBinding
 import com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.model.AlbumsViewModel
 
 
-
 lateinit var onSingleItemClickListener : ArtistAlbumAdapter.OnItemClickListener
 lateinit var artistAlbumList: List<AlbumsViewModel>
 
-class ArtistAlbumAdapter(val albumList: List<AlbumsViewModel>, onItemClickListener:OnItemClickListener): RecyclerView.Adapter<ArtistAlbumAdapter.ArtistSingleViewHolder>() {
+class ArtistAlbumAdapter(albumList: List<AlbumsViewModel>, onItemClickListener:OnItemClickListener): RecyclerView.Adapter<ArtistAlbumAdapter.ArtistSingleViewHolder>() {
     init {
         onSingleItemClickListener = onItemClickListener
         artistAlbumList = albumList

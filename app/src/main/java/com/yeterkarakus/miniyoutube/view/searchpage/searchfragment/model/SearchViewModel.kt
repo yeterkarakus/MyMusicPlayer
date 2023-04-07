@@ -16,9 +16,8 @@ data class SearchViewModel (
         parcel.readString(),
         parcel.readValue(Long::class.java.classLoader) as? Long,
         parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        TODO("albumList"),
-        TODO("trackList")
+        parcel.readValue(Long::class.java.classLoader) as? Long
+
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

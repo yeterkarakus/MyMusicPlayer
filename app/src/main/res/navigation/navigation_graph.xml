@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchActiveFragment"
-        android:name="com.yeterkarakus.miniyoutube.view.searchpage.SearchActiveFragment"
+        android:name="com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.view.SearchActiveFragment"
         android:label="fragment_search_active"
         tools:layout="@layout/fragment_search_active">
         <argument
@@ -52,8 +52,8 @@
         android:label="fragment_albums"
         tools:layout="@layout/fragment_albums">
         <argument
-            android:name="baseAlbumViewModel"
-            app:argType="com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.BaseAlbumViewModel" />
+            android:name="uuid"
+            app:argType="string" />
         <action
             android:id="@+id/action_albumsFragment_to_trackDetailsFragment"
             app:destination="@id/trackDetailsFragment"/>
@@ -66,29 +66,29 @@
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.trackdetailsfragment.view.TrackDetailsFragment"
         android:label="TrackDetailsFragment"
         tools:layout="@layout/fragment_track_details">
-        <argument
-            android:name="trackDetailsViewModel"
-            app:argType="com.yeterkarakus.miniyoutube.view.searchpage.trackdetailsfragment.model.TrackDetailsViewModel" />
         <action
             android:id="@+id/action_trackDetailsFragment_to_artistFragment"
             app:destination="@id/artistFragment"/>
         <action
             android:id="@+id/action_trackDetailsFragment_to_searchNotFoundFragment"
             app:destination="@id/searchNotFoundFragment"/>
+        <argument
+            android:name="uuid"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/artistFragment"
         android:name="com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.view.ArtistFragment"
         android:label="fragment_artist"
         tools:layout="@layout/fragment_artist">
-        <argument
-            android:name="baseViewModel"
-            app:argType="com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.model.BaseViewModel" />
         <action
             android:id="@+id/action_artistFragment_to_albumsFragment"
             app:destination="@id/albumsFragment"/>
         <action
             android:id="@+id/action_artistFragment_to_searchNotFoundFragment"
             app:destination="@id/searchNotFoundFragment"/>
+        <argument
+            android:name="uuid"
+            app:argType="string" />
     </fragment>
 </navigation>
