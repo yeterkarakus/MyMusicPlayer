@@ -15,7 +15,10 @@ import com.yeterkarakus.miniyoutube.adapter.TrackRecyclerAdapter
 import com.yeterkarakus.miniyoutube.databinding.FragmentSearchActiveBinding
 import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.model.AlbumViewModel
 import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.model.TrackViewModel
+import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.view.SearchActiveFragmentDirections.Companion.actionSearchActiveFragmentToAlbumsFragment
 import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.view.SearchActiveFragmentDirections.Companion.actionSearchActiveFragmentToSearchFragment
+import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.view.SearchActiveFragmentDirections.Companion.actionSearchActiveFragmentToSearchNotFoundFragment
+import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.view.SearchActiveFragmentDirections.Companion.actionSearchActiveFragmentToTrackDetailsFragment
 import kotlinx.coroutines.*
 
 
@@ -72,17 +75,20 @@ class SearchActiveFragment: Fragment()
 }
 
     override fun onItemSelected(trackViewModel: TrackViewModel) {
-        val action =
-            SearchActiveFragmentDirections
-                .actionSearchActiveFragmentToTrackDetailsFragment(trackViewModel.id)
-        findNavController().navigate(action)
+        if (trackViewModel.id.isNotEmpty()){
+            findNavController().navigate(actionSearchActiveFragmentToTrackDetailsFragment(trackViewModel.id))
+        }else{
+            findNavController().navigate(actionSearchActiveFragmentToSearchNotFoundFragment())
+        }
     }
 
     override fun onItemSelect(albumViewModel: AlbumViewModel) {
-        val action =
-            SearchActiveFragmentDirections
-                .actionSearchActiveFragmentToAlbumsFragment(albumViewModel.uri)
-        findNavController().navigate(action)
+        if (albumViewModel.uri.isNotEmpty()){
+            findNavController().navigate(actionSearchActiveFragmentToAlbumsFragment(albumViewModel.uri))
+        }else {
+           findNavController().navigate(actionSearchActiveFragmentToSearchNotFoundFragment())
+        }
+
     }
 }
 

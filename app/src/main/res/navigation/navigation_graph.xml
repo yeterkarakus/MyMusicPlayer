@@ -56,10 +56,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_albumsFragment_to_trackDetailsFragment"
-            app:destination="@id/trackDetailsFragment"/>
+            app:destination="@id/trackDetailsFragment" />
         <action
             android:id="@+id/action_albumsFragment_to_searchNotFoundFragment"
-            app:destination="@id/searchNotFoundFragment"/>
+            app:destination="@id/searchNotFoundFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/trackDetailsFragment"
@@ -68,13 +69,14 @@
         tools:layout="@layout/fragment_track_details">
         <action
             android:id="@+id/action_trackDetailsFragment_to_artistFragment"
-            app:destination="@id/artistFragment"/>
-        <action
-            android:id="@+id/action_trackDetailsFragment_to_searchNotFoundFragment"
-            app:destination="@id/searchNotFoundFragment"/>
+            app:destination="@id/artistFragment" />
         <argument
             android:name="uuid"
             app:argType="string" />
+        <action
+            android:id="@+id/action_trackDetailsFragment_to_searchNotFoundFragment"
+            app:destination="@id/searchNotFoundFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/artistFragment"
@@ -84,11 +86,11 @@
         <action
             android:id="@+id/action_artistFragment_to_albumsFragment"
             app:destination="@id/albumsFragment"/>
-        <action
-            android:id="@+id/action_artistFragment_to_searchNotFoundFragment"
-            app:destination="@id/searchNotFoundFragment"/>
         <argument
             android:name="uuid"
             app:argType="string" />
+        <action
+            android:id="@+id/action_artistFragment_to_searchNotFoundFragment"
+            app:destination="@id/searchNotFoundFragment" />
     </fragment>
 </navigation>

@@ -2,8 +2,8 @@ package com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.model
 
 
 data class ArtistViewModel(
-    val id: String,
-    val name: String,
-    val uri: String,
-    val imageUrl: String
+    var id: String? = null,
+    var name: String? = null,
+    var uri: String? = null,
+    var imageUrl: String? = null,
 )

@@ -13,6 +13,7 @@ import androidx.navigation.NavDeepLinkBuilder
 import com.yeterkarakus.miniyoutube.Constants.ALBUM
 import com.yeterkarakus.miniyoutube.R
 import com.yeterkarakus.miniyoutube.pushnotification.model.NotificationData
+import com.yeterkarakus.miniyoutube.view.MainActivity
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.view.AlbumsFragmentArgs
 import com.yeterkarakus.miniyoutube.view.searchpage.trackdetailsfragment.view.TrackDetailsFragmentArgs
 
@@ -21,7 +22,7 @@ class SystemNotificationMaker(private val context: Context) {
     private lateinit var pendingIntent: PendingIntent
 
     fun make(
-        notificationData: NotificationData,
+        notificationData:NotificationData,
         notificationManager: NotificationManager
     ): Notification {
         notificationChanel(notificationManager)
@@ -52,10 +53,9 @@ class SystemNotificationMaker(private val context: Context) {
                 providerPendingIntent(R.id.trackDetailsFragment )
             }
             else -> {
-                providerPendingIntent(R.id.searchFragment)
+                providerPendingIntent(R.id.searchNotFoundFragment)
             }
         }
-
      }
 
     private fun providerPendingIntent(setDestination: Int,args : Bundle? = null): PendingIntent =
@@ -63,9 +63,9 @@ class SystemNotificationMaker(private val context: Context) {
         NavDeepLinkBuilder(context)
             .setArguments(args)
             .setGraph(R.navigation.navigation_graph)
+            .setComponentName(MainActivity::class.java)
             .setDestination(setDestination)
             .createPendingIntent()
-
 
     private fun notificationChanel(notificationManager: NotificationManager) {
         val chanelName = "firebase_push"

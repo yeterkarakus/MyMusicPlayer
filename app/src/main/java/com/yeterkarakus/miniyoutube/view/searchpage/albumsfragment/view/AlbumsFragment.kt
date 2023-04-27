@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,8 @@ import com.yeterkarakus.miniyoutube.api.RetrofitApi
 import com.yeterkarakus.miniyoutube.databinding.FragmentAlbumsBinding
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.AlbumDetailsViewModel
 import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.model.AlbumTracksViewModel
+import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.view.AlbumsFragmentDirections.Companion.actionAlbumsFragmentToSearchNotFoundFragment
+import com.yeterkarakus.miniyoutube.view.searchpage.albumsfragment.view.AlbumsFragmentDirections.Companion.actionAlbumsFragmentToTrackDetailsFragment
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
@@ -27,8 +30,6 @@ class AlbumsFragment @Inject constructor(
     private lateinit var skeleton: Skeleton
     private var _binding: FragmentAlbumsBinding? = null
     private val binding get() = _binding!!
-    private val job = Job()
-    private val scope = CoroutineScope(Dispatchers.IO+job)
     private val args by navArgs<AlbumsFragmentArgs>()
     private var albumTracksViewModel = AlbumTracksViewModel()
     private var albumDetailsViewModel = AlbumDetailsViewModel()
@@ -52,7 +53,7 @@ class AlbumsFragment @Inject constructor(
 
 
     private fun albumsData(){
-        scope.launch {
+        lifecycleScope.launch {
             val trackUtil = TrackUtils()
 
             val albumList: MutableList<AlbumDetailsViewModel> = mutableListOf()
@@ -89,11 +90,14 @@ class AlbumsFragment @Inject constructor(
             }
 
             withContext(Dispatchers.Main){
-                Glide.with(requireActivity())
-                    .load(albumList[0].imageUrl)
-                    .transform(RoundedCorners(15))
-                    .into(binding.albumDetailsImage)
-                binding.albumName.text = albumList[0].name
+                albumDetailsViewModel.let {
+
+                    Glide.with(requireActivity())
+                        .load(albumDetailsViewModel.imageUrl)
+                        .transform(RoundedCorners(15))
+                        .into(binding.albumDetailsImage)
+                    binding.albumName.text = albumDetailsViewModel.name
+                }
 
                 val albumTrackRecyclerAdapter = AlbumTracksRecyclerAdapter(albumsTrackList,
                     this@AlbumsFragment)
@@ -103,22 +107,21 @@ class AlbumsFragment @Inject constructor(
                 skeleton.showOriginal()
 
             }
-
         }
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        job.cancel()
         _binding = null
     }
 
 
     override fun onAlbumTrackItemsSelect(albumTracksViewModel: AlbumTracksViewModel) {
-        val action = AlbumsFragmentDirections
-            .actionAlbumsFragmentToTrackDetailsFragment(albumTracksViewModel.uri.toString())
-        findNavController().navigate(action)
+       if (albumTracksViewModel.uri != null){
+           findNavController().navigate(actionAlbumsFragmentToTrackDetailsFragment(albumTracksViewModel.uri.toString()))
+       }else{
+           findNavController().navigate(actionAlbumsFragmentToSearchNotFoundFragment())
+       }
     }
 }
 

@@ -1,8 +1,8 @@
 package com.yeterkarakus.miniyoutube.view.searchpage.artistfragment.model
 
 data class AlbumsViewModel(
-    val albumsId: String,
-    val albumsName: String,
-    val albumsDate: Long,
-    val albumsImgUrl :String
+    var albumsId: String? = null,
+    var albumsName: String? = null,
+    var albumsDate: Long? = null,
+    var albumsImgUrl :String? = null
 )

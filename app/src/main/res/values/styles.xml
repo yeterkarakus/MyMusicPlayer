@@ -65,7 +65,8 @@
 
     <style name="image_text">
             <item name="android:textSize">32sp</item>
-        <item name="fontFamily">@font/plus_jakarta_sans_variable_font_wght</item>
+            <item name="fontFamily">@font/plus_jakarta_sans_variable_font_wght</item>
+            <item name="android:fontFamily">@font/plus_jakarta_sans_variable_font_wght</item>
             <item name="android:letterSpacing">-0.01</item>
             <item name="android:textColor">#FFFFFF</item>
     </style>

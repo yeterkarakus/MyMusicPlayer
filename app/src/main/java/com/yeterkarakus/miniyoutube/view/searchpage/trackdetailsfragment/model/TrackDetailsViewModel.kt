@@ -8,4 +8,6 @@ data class TrackDetailsViewModel(
     var artistName: String? = null,
     var albumImgUrl : String? = null,
     var albumName : String? = null,
-    var albumId :String? = null)
+    var albumId :String? = null,
+    var previewUrl : String?= null
+)

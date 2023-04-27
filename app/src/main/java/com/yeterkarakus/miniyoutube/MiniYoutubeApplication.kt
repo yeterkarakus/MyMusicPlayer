@@ -10,7 +10,7 @@ import dagger.hilt.android.HiltAndroidApp
 class MiniYoutubeApplication : Application() {
 
     override fun onCreate() {
-        subscribe()
+      subscribe()
         super.onCreate()
 
     }

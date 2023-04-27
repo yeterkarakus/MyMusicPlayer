@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
@@ -29,6 +30,8 @@ import com.yeterkarakus.miniyoutube.model.searchmodel.SearchType
 import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.model.AlbumViewModel
 import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.model.SearchViewModel
 import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.model.TrackViewModel
+import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.view.SearchFragmentDirections.Companion.actionSearchFragmentToSearchActiveFragment
+import com.yeterkarakus.miniyoutube.view.searchpage.searchfragment.view.SearchFragmentDirections.Companion.actionSearchFragmentToSearchNotFoundFragment
 import kotlinx.coroutines.*
 import java.util.*
 import javax.inject.Inject
@@ -39,10 +42,10 @@ class SearchFragment @Inject constructor(
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
-    private val job = Job()
-    private val scope = CoroutineScope(Dispatchers.IO + job)
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
+    private val gson = Gson()
+    private var errorResponse : ErrorResponse? = null
 
 
     override fun onCreateView(
@@ -72,6 +75,7 @@ class SearchFragment @Inject constructor(
             false
         }
 
+
         binding.imageView.setOnClickListener {
             speechToText(it)
 
@@ -96,7 +100,8 @@ class SearchFragment @Inject constructor(
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
             )
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text")
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak")
+
             activityResultLauncher.launch(intent)
 
         }
@@ -104,30 +109,33 @@ class SearchFragment @Inject constructor(
     }
     private fun registerLauncher(){
         activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-                if (it.resultCode == RESULT_OK) {
-                val fromResult = it.data
-                    if (fromResult != null) {
-                        val res: ArrayList<String> =
-                            fromResult.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
-                        binding.searchEditText.setText(Objects.requireNonNull(res)[0])
-                    }
+            if (it.resultCode == RESULT_OK) {
+                val result = it.data
+                result?.let { intent ->
+                    val res: ArrayList<String> = intent.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
+                    binding.searchEditText.setText(Objects.requireNonNull(res)[0])
                 }
+            }
         }
         permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            intent.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak")
             if (it){
-                val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-                intent.putExtra(
-                    RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                    RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-                )
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak")
                 activityResultLauncher.launch(intent)
             }
         }
     }
+
+
     private fun getSearchData() {
-            scope.launch {
+
+        val type = object : TypeToken<ErrorResponse>() {}.type
+        lifecycleScope.launch {
                 val searchTracksData = retrofit.search(
                     binding.searchEditText.text.toString(),
                     SearchType.tracks,
@@ -154,10 +162,10 @@ class SearchFragment @Inject constructor(
                         )
                         trackList.add(track)
                     }
-
                     searchViewModel.trackRecordCount = it.tracks.totalCount
+                    searchViewModel.trackList = trackList
                 }
-                searchViewModel.trackList = trackList
+
 
                 //Album
 
@@ -176,44 +184,27 @@ class SearchFragment @Inject constructor(
                         albumList.add(album)
                     }
                     searchViewModel.albumRecordCount = it.albums.totalCount
+                    searchViewModel.albumList = albumList
                 }
-                searchViewModel.albumList = albumList
-
-
                 withContext(Dispatchers.Main) {
-                    if (searchAlbumData.isSuccessful && searchTracksData.isSuccessful) {
-
-                        val actionSearchActive =
-                            SearchFragmentDirections.actionSearchFragmentToSearchActiveFragment(
-                                searchViewModel
-                            )
-                        findNavController().navigate(actionSearchActive)
-                    } else {
-                        val gson = Gson()
-                        val type = object : TypeToken<ErrorResponse>() {}.type
-                        val errorResponse: ErrorResponse? =
-                            gson.fromJson(searchTracksData.errorBody()!!.charStream(), type)
-                        if (errorResponse != null) {
-                            Toast.makeText(
-                                requireContext(),
-                                errorResponse.message,
-                                Toast.LENGTH_LONG
-                            ).show()
-
-                            val actionError =
-                                SearchFragmentDirections.actionSearchFragmentToSearchNotFoundFragment()
-                            findNavController().navigate(actionError)
-
+                    if (searchAlbumData.isSuccessful && searchTracksData.isSuccessful){
+                        findNavController().navigate(actionSearchFragmentToSearchActiveFragment(searchViewModel))
+                    }else {
+                        errorResponse = gson.fromJson(searchTracksData.errorBody()!!.charStream(), type)
+                        errorResponse?.let {
+                            findNavController().navigate(actionSearchFragmentToSearchNotFoundFragment())
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                         }
                     }
                 }
-            }
         }
+    }
+
+
 
 
     override fun onDestroy() {
         _binding = null
-        job.cancel()
         super.onDestroy()
     }
 }
