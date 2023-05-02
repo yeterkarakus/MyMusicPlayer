@@ -56,7 +56,6 @@ class TrackDetailsFragment @Inject constructor(
         WebView(requireContext()).clearCache(true)
         _binding = null
         super.onDestroyView()
-
     }
 
     private fun tracksData(){

@@ -17,6 +17,10 @@
         android:theme="@style/Theme.MiniYoutube"
         tools:targetApi="31">
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8795287947331228~6077342000"/>
+
         <service android:name=".pushnotification.service.MessagingService"
             android:exported="false">
             <intent-filter>

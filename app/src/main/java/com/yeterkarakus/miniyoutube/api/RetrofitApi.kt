@@ -15,7 +15,6 @@ import retrofit2.http.Query
 
 
 interface RetrofitApi {
-
     @Headers(
         "X-RapidAPI-Key: bd2f663c8amsh84ac99a19f918dbp1d11a7jsn37a234188bff",
         "X-RapidAPI-Host: spotify23.p.rapidapi.com"

@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -57,6 +58,8 @@ class SearchFragment @Inject constructor(
         registerLauncher()
         return binding.root
 
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,11 +77,11 @@ class SearchFragment @Inject constructor(
             }
             false
         }
-
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
         binding.imageView.setOnClickListener {
             speechToText(it)
-
         }
     }
 

@@ -5,12 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.MobileAds
 import com.yeterkarakus.miniyoutube.R
 import com.yeterkarakus.miniyoutube.databinding.ActivitySplashBinding
-import com.yeterkarakus.miniyoutube.pushnotification.push.SystemNotificationMaker
 
 
 @SuppressLint("CustomSplashScreen")
